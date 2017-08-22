@@ -27,7 +27,7 @@ class JdbcTest {
 	
     private List<Country> expectedCountryList = new ArrayList<Country>();
     private List<Country> expectedCountryListStartsWithA = new ArrayList<Country>();
-    private Country countryWithChangedName = new SimpleCountry(8, "Russian Federation", "RU");
+    private Country countryWithChangedName = new SimpleCountry(8, "Russia", "RU");
 
     @BeforeEach
     void setUp() throws Exception {
