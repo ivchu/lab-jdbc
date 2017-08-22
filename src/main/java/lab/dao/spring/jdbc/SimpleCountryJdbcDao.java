@@ -2,7 +2,6 @@ package lab.dao.spring.jdbc;
 
 import java.util.List;
 
-import lab.dao.CountryRowMapper;
 import lab.model.Country;
 
 import lab.model.simple.SimpleCountry;
