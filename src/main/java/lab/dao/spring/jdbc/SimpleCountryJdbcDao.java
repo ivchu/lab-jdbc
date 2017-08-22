@@ -5,7 +5,9 @@ import java.util.List;
 import lab.dao.CountryRowMapper;
 import lab.model.Country;
 
+import lab.model.simple.SimpleCountry;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -22,12 +24,20 @@ public class SimpleCountryJdbcDao extends JdbcDaoSupport implements lab.dao.Coun
 	private static final String UPDATE_COUNTRY_NAME_SQL_1 = "update country SET name='";
 	private static final String UPDATE_COUNTRY_NAME_SQL_2 = " where code_name='";
 
-    private static final CountryRowMapper COUNTRY_ROW_MAPPER = new CountryRowMapper();
+    private static final RowMapper<Country> COUNTRY_ROW_MAPPER = (resultSet, rowNum) ->
+            new SimpleCountry(
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("code_name"));
 
 	@Override
     public List<Country> getCountryList() {
-		// TODO: implement it
-		return null;
+        JdbcTemplate jdbcTemplate = getJdbcTemplate();
+        if (jdbcTemplate != null) {
+            return jdbcTemplate.query(GET_ALL_COUNTRIES_SQL, COUNTRY_ROW_MAPPER);
+        } else {
+            throw new RuntimeException("no jdbcTemplate in getCountryList");
+        }
 	}
 
 	@Override
@@ -50,7 +60,6 @@ public class SimpleCountryJdbcDao extends JdbcDaoSupport implements lab.dao.Coun
 		for (String[] countryData : COUNTRY_INIT_DATA) {
 			String sql = LOAD_COUNTRIES_SQL + "('" + countryData[0] + "', '"
 					+ countryData[1] + "');";
-//			System.out.println(sql);
 			getJdbcTemplate().execute(sql);
 		}
 	}
