@@ -19,7 +19,6 @@ public class SimpleCountryJdbcDao extends JdbcDaoSupport implements lab.dao.Coun
 	private static final String GET_COUNTRIES_BY_NAME_SQL = "select * from country where name like :name";
 	private static final String GET_COUNTRY_BY_NAME_SQL = "select * from country where name = '";
 	private static final String GET_COUNTRY_BY_CODE_NAME_SQL = "select * from country where code_name = '";
-
 	private static final String UPDATE_COUNTRY_NAME_SQL_1 = "update country SET name='";
 	private static final String UPDATE_COUNTRY_NAME_SQL_2 = " where code_name='";
 

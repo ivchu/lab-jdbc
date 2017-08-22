@@ -36,7 +36,6 @@ class JdbcTest {
     }
     
     @Test
-    @DirtiesContext
     void testCountryList() {
         List<Country> countryList = countryDao.getCountryList();
         assertNotNull(countryList);
@@ -47,7 +46,6 @@ class JdbcTest {
     }
 
     @Test
-    @DirtiesContext
     void testCountryListStartsWithA() {
         List<Country> countryList = countryDao.getCountryListStartWith("A");
         assertNotNull(countryList);
