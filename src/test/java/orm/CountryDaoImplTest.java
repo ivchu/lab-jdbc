@@ -32,7 +32,7 @@ class CountryDaoImplTest {
     void testSaveCountry2() {
         countryDao.save(exampleCountry);
         assertThat(exampleCountry,
-                is(countryDao.getAllCountries().findFirst()));
+                is(countryDao.getAllCountries().findFirst().get()));
         countryDao.remove(exampleCountry);
     }
 

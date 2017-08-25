@@ -12,6 +12,7 @@
         <jdbc:script location="classpath:db-schema.sql"/>
     </jdbc:embedded-database>
 
-    
-          p:dataSource-ref="dataSource"/>
+    <!--<bean id="countryDao" class="lab.dao.spring.jdbc.SimpleCountryJdbcDao"-->
+          <!--p:dataSource-ref="dataSource"/>-->
+
 </beans>
