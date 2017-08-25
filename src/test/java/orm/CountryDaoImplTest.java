@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -28,6 +29,7 @@ class CountryDaoImplTest {
     @Qualifier("countryJpaDaoImpl")
     private CountryDao countryDao;
 
+    @DirtiesContext
     @Test
     void testSaveCountry2() {
         countryDao.save(exampleCountry);
@@ -36,6 +38,7 @@ class CountryDaoImplTest {
         countryDao.remove(exampleCountry);
     }
 
+    @DirtiesContext
     @Test
     void testGetAllCountries() {
         SimpleCountry country = new SimpleCountry(1, "Canada", "CA");
@@ -44,6 +47,7 @@ class CountryDaoImplTest {
         countryDao.remove(country);
     }
 
+    @DirtiesContext
     @Test
     void testGetCountryByName() {
         countryDao.save(exampleCountry);

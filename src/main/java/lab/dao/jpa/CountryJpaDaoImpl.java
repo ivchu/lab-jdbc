@@ -49,12 +49,11 @@ public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
     }
     @Override
     public void remove(Country exampleCountry) {
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction transaction = em.getTransaction();
-//        transaction.begin();
-//        em.remove(em.merge(exampleCountry));
-//        transaction.commit();
-//        have no idea how to make it work
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.remove(em.merge(exampleCountry));
+        transaction.commit();
     }
 
 }
